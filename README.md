@@ -6,7 +6,7 @@
 * Work in a branch on your fork
 * Create a PR to your master from your working branch.
 * Ensure that your repository/branch is connected to travis-ci.com
-* Ensure that your repository/branch is connected to a dyno at heroku.com 
+* Ensure that your repository/branch is connected to a dyno at heroku.com   -optional
 	* **Note**: Will discuss in Saturday lab
 * Heroku and Travis should pick you up and deploy
 * Submit on canvas:
