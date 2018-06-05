@@ -59,16 +59,17 @@ const requestHandler = (req,res) => {
       // have to put query string http://localhost:3000?cowsay=cool otherwise have it default to i dont know what to say
       if ( req.method === 'GET' && req.url.pathname === '/cowsay' ) {
 
-        if (!req.url.query) {
-          var message = 'i dont know what to say';
-        }else{
-          message = req.url.query;
-        }
+        // if (!req.url.query) {
+        //   var message = 'i dont know what to say';
+        // }else{
+        //   message = req.url.query;
+        // }
+        console.log('RESPONSE TEXT:  ',res.text);
         res.setHeader('Content-Type', 'text/html');
         res.statusCode = 200;
         res.statusMessage = 'OK';
         res.write(`<!DOCTYPE html>
-        <html><head><title> cowsay </title></head><body><header><nav><ul><li><pre>${cowsay.say({text : message,e : 'oO',T : 'U '})}</pre></li></ul></nav><header><main><!-- project description --></main></body></html>`);
+        <html><head><title> cowsay </title></head><body><header><nav><ul><li><pre>${cowsay.say({text : req.body,e : 'oO',T : 'U '})}</pre></li></ul></nav><header><main><!-- project description --></main></body></html>`);
 
         
       
