@@ -7,14 +7,14 @@ describe('URL Parser', () => {
   it('requires a request object', () => {
     let req = undefined;
     return parser(req)
-      .then( response => false )
+      // .then( response => false )
       .catch( err => expect(err).toBeDefined() );
   });
 
   it('requires a req object with a url', () => {
     let req = {};
     return parser(req)
-      .then( response => false )
+      // .then( response => false )
       .catch( err => expect(err).toBeDefined() );
   });
 

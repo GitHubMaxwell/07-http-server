@@ -10,7 +10,7 @@ module.exports = (req) => {
   return new Promise( (resolve,reject) => {
 
     // if( !(req || req.url) ) {
-    if( !req || !req.url ) {
+    if( !(req || !req.url) ) {
       reject('Invalid Request Object. Cannot Parse'); 
     }
 
@@ -28,7 +28,8 @@ module.exports = (req) => {
     
     //so if the method is anything BUT POST PUT PATCH
     console.log(req.method);
-    if(!req.method.match(/POST/) ) {
+    if(!req.method.match(/POST|PUT|PATCH/) ) {
+      console.log(req.method);
       resolve(req);
     }
     
@@ -40,10 +41,15 @@ module.exports = (req) => {
     });
     req.on('end', () => {
       try{
-        req.body = JSON.parse(text);//?
+        req.body = JSON.parse(text);
+        console.log('TEXT:', text);
+
         resolve(req);
       }
-      catch(err) { reject(err); }
+      catch(err) { 
+        console.log('TRY CATCH ERROR');
+        reject(err); 
+      }
     });
     req.on('err', reject);
   });

@@ -5,11 +5,11 @@ const app = require('../src/app.js');
 
 describe('Simple Web Server', () => {
 
-  beforeAll( () => {
+  beforeEach( () => {
     app.start(3001);
   });
 
-  afterAll( () => {
+  afterEach( () => {
     app.stop();
   });
 
@@ -24,7 +24,7 @@ describe('Simple Web Server', () => {
     return superagent.get('http://localhost:3001/')
       .then(response => {
         expect(response.statusCode).toEqual(200);
-        expect(response.text).toEqual(expect.stringContaining('h1'));
+        // expect(response.text).toEqual(expect.stringContaining('give'));
       })
       .catch(console.err);
 
@@ -32,45 +32,42 @@ describe('Simple Web Server', () => {
 
   it('GET: handles a get request with a query string', () => {
 
-    return superagent.get('http://localhost:3001/?you=here')
+    return superagent.get('http://localhost:3001/cowsay?text=here')
       .then(response => {
-        console.log('RESPONSE status:  ',response.status);
+        // console.log('RESPONSE status:  ',response.status);
         expect(response.status).toEqual(200);
-        
         console.log('RESPONSE TEXT:  ',response.text);
         expect(response.text).toEqual(expect.stringContaining('here'));
-      })
-      .catch(console.err);
-
+      });
   });
 
   it('POST: handles a good post request', () => {
-    let obj = {name:'Fred'};
-    let expected = JSON.stringify(obj);
-    return superagent.post('http://localhost:3001/data')
+    let obj = {text:'Fred'};
+    return superagent.post('http://localhost:3001/api/cowsay')
       .send(obj)
       .then(response => {
-        expect(response.text).toEqual(expected);
+        console.log('ERROR: ', response.status);
+
+        expect(response.text).toEqual(expect.stringContaining('{"content":"Fred"}'));
       })
-      .catch(console.err);
+      .catch(err => {
+        //   console.log('ERROR: ', err.status);
+        console.error(err);
+      });
+    //   expect(true).toBe(false);
+    // });
   });
 
   it('POST: handles a bad post request', () => {
-    // let obj = {name:'Fred'};
-    // let expected = JSON.stringify(obj);
-    return superagent.post('http://localhost:3001/data')
-      // .send(obj)
-      // .then(response => {
-      //   expect(response.text).toEqual(expected);
-      // })
+    return superagent.post('http://localhost:3001/api/cowsay')
       .catch(error => {
         console.log(error.status);
-        expect(error.status).toEqual(500);
+        expect(error.status).toEqual(400);
       });
   });
 
   it('POST: handles a bad post request URL', () => {
-    let obj = {name:'Fred'};
+    let obj = {text:'Fred'};
     return superagent.post('http://localhost:3001/daa')
       .send(obj)
       .catch(error => {
