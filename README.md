@@ -9,7 +9,7 @@
 
 * TRAVIS: https://travis-ci.com/GitHubMaxwell/07-http-server
 * HEROKU: https://lab-07.herokuapp.com/
-* GitHUB PR: 
+* GitHUB PR: https://github.com/GitHubMaxwell/07-http-server/pull/2
 
 ## Steps
 * fork/clone code
