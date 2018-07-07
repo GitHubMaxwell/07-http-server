@@ -70,8 +70,8 @@ const requestHandler = (req,res) => {
     }) // closes the "then" of the parser promise
     .catch(err => {
       res.writeHead(500);
-      res.write(err);
-      res.end();
+      res.write('Server Error', err);
+      // res.end();
     });
 };
 

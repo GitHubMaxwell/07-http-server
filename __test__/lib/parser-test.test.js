@@ -2,7 +2,7 @@
 
 let parser = require('07-http-server/../../src/lib/parser.js');
 
-xdescribe('URL Parser', () => {
+describe('URL Parser', () => {
 
   it('requires a request object', () => {
     let req = undefined;
