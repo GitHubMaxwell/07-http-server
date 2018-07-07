@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   <title> cowsay </title>  
+ </head>
+ <body>
+  <header>
+    <nav>
+      <form action='/api/cowsay' method='POST'>
+       <input name='text' placeholder=' Type some stuff for the cow'>
+     </form>
+     <p> ^^^^^^^^this is now a POST</p>
+    </nav>
+  <header>
+  <main>
+      <h1> cowsaid </h1>
+   <pre>
+     {{cowsay}}
+   </pre>
+  </main>
+ </body>
+</html>

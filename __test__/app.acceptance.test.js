@@ -35,7 +35,9 @@ describe('Simple Web Server', () => {
 
     return superagent.get('http://localhost:3000/?you=here')
       .then(response => {
-        expect(response.statusCode).toEqual(200);
+        console.log('RESPONSE status:  ',response.status);
+        expect(response.status).toEqual(200);
+        
         console.log('RESPONSE TEXT:  ',response.text);
         expect(response.text).toEqual(expect.stringContaining('here'));
       })

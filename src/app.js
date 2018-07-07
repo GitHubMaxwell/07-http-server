@@ -20,7 +20,7 @@ const requestHandler = (req,res) => {
   console.log('METHOD: ',req.method);
   //methods like PUT/POST/DELETE/GET/PATCH
   //method + URL will create a route
-  console.log('HEADER: ',req.headers);
+  // console.log('HEADER: ',req.headers);
   // headers will be important when we 
   console.log('URL: ',req.url);
   //URL is important as part of the ROUTE
@@ -31,6 +31,7 @@ const requestHandler = (req,res) => {
   //returns a promise
   //then when it comes back from parser
     .then( req => {
+      console.log('IN the THEN: ', req.method);
 
       /* The "if" statements below are our "routes" and do the same things that express does (below) but 100% manually
            app.get('/', (req,res) => res.send('Hello From the Gutter'));
